@@ -1,70 +1,3 @@
-# Description
-日常工具操作函数，其中包含：**日期处理**、**数据类型判断**、**字符串处理**、**cookie处理**、**正则判断**、**dom操作**、**设备判断**、**url操作**等
-# Use
-
-```
-import util from 'saltire_util'
-```
-
-# API
-
-### comm
-```
-util.debounce() // 防止函数被频繁触发
-```
-### cookie
-
-```
-util.setCookie() // '给维权骑士项目（rightknights-html设置cookie，开发模式下是本地，正式环境下是.rightknights.com)'
-
-util.getCookie() // '获取cookie'
-```
-
-### date
-
-```
-util.renderDate() //  '日期格式化工具函数',
-util.between() // '判断指定日期是否在指定的开始日期和结束日期之间',
-util.isEqual() // '判断两个日期是否相等',
-util.isLeapYear() // '判断是否是闰年',
-util.getFirstDayOfMonth() // '返回指定年月的第一天是星期几，返回值是1-7的数字',
-util.getLastDayOfMonth() // '返回指定月份的最后一天是星期几，返回值是1-7的数字',
-util.getFirstDateOfMonth() // '返回指定年月第一天的日期',
-util.getLastDateOfMonth() // '返回指定年月最后一天的日期',
-util.getDaysInMonth() // '获取指定月份的天数',
-util.addDays() // '给指定日期增加指定天数',
-util.addHours() // '给指定日期增加指定小时',
-util.timeStarChange() // '将时间转为时间戳，按当天最初一刻',
-util.timeEndChange() //'将时间转为时间戳，按当天最后一刻',
-util.timeDifference() // '获取时间差,提供两个时间戳，返回一个对象,为负数表示当前time1比time2小'
-```
-
-### device
-
-```
-util.isPC()  // "是否是PC设备",
-util.istrident()  // "是否是IE浏览器",
-util.ispresto()  // "是否是opera内核",
-util.iswebKit()  // "苹果、谷歌内核",
-util.isiPhone()  // "是否为iPhone或者QQHD浏览器",
-util.isiPad()  // "是否iPad",
-util.isweixin()  // "是否微信",
-util.isgecko()  // "判断是否是火狐内核",
-util.isios()  // "判断是否是ios终端",
-util.isqq()  // "判断是否是qq"
-```
-
-### dom
-
-```
-util.hasClass() //  '判断元素是否含有某个class',
-util.addClass() //  '原生js操作元素class的方法，给元素添加class，支持不定长参数',
-util.removeClass() //  '原生js操作元素class的方法，删除元素的class，支持不定长参数'
-```
-
-### check
-
-```
 const reg = {
 	// 网址(url,支持端口和"?+参数"和"#+参数)
 	url: /^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/,
@@ -150,29 +83,28 @@ const reg = {
 	// 邮政编码（中国）
 	zip_code: /^(0[1-7]|1[0-356]|2[0-7]|3[0-6]|4[0-7]|5[1-7]|6[1-7]|7[0-5]|8[013-6])\d{4}$/,
 }
-```
-
-### string
-
-```
-util.camelCase() //  '英文字符串依序转驼峰，处理过程中遇见非英文字母字符，全部当做空格处理，其余依序拼装',
-util.endsWith() //  '判断某个字符串是否以某特殊字符结尾,尾部空格会被忽略',
-util.startsWith() //  '判断某个字符串是否以某特殊字符开头,头部空格会被忽略',
-util.randomString() //  '生成随机字符串',
-util.hiddenNumber() //  '隐藏号码的中间一部分，常见的是隐藏中间四位'
-```
-
-### url
-
-```
-util.GetQueryString() //  '获取url中的某个参数值',
-util.replaceQueryString() //  '修改url中的某个参数的值，返回新地址',
-util.addQueryString() //  '在URL中追加一个参数'
-```
 
 
+/**
+  * @date 2020-06-19
+  * @author saltire
+  * @description 常用正则表达式的验证
+  * @param （string，待验证的字符串）
+  * @return （boolean，验证结果）
+  * @example  check.isphone_loose('19121673570') => true
+*/
+let check = function(s, r) {
+	let regNew = new RegExp(r);
+	
+	return regNew.test(s);
+}
 
+Object.keys(reg).forEach(function (t) {
+    check["is" + t] = function (params) {
+        return check(params, reg[t]);
+    }
+});
 
-
-
-
+export{
+	check
+}
