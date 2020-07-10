@@ -1,7 +1,8 @@
 const list = {
 	GetQueryString: '获取url中的某个参数值',
 	replaceQueryString: '修改url中的某个参数的值，返回新地址',
-	addQueryString: '在URL中追加一个参数'
+	addQueryString: '在URL中追加一个参数',
+	isAbsoluteURL: '如果给定的字符串是绝对URL，则返回 true ；否则返回 false'
 }
 
 /* 获取url中的某个参数值 */
@@ -38,6 +39,16 @@ function addQueryString(paramName, replaceWith) {
     }
     return url;
 };
+
+/**
+  * @description 是否为绝对地址,如果给定的字符串是绝对URL，则返回 true ；否则返回 false。
+  * @example isAbsoluteURL('https://google.com'); // true
+  * @example isAbsoluteURL('ftp://www.myserver.net'); // true
+  * @example isAbsoluteURL('/foo/bar'); // false
+*/
+function isAbsoluteURL(str){
+	return  /^[a-z][a-z0-9+.-]*:/.test(str);
+}
 
 /**
   * @date 2020-06-19

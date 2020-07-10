@@ -11,13 +11,15 @@ import util from 'saltire_util'
 ### comm
 ```
 util.debounce() // 防止函数被频繁触发
+util.copyToClipboard() // 将一个字符串复制到剪贴板
 ```
 ### cookie
 
 ```
 util.setCookie() // '给维权骑士项目（rightknights-html设置cookie，开发模式下是本地，正式环境下是.rightknights.com)'
-
 util.getCookie() // '获取cookie'
+util.clearCookie() // '清除某个cookie'
+util.parseCookie() // '解析 HTTP Cookie 标头字符串并返回所有cookie的name-value对的对象'
 ```
 
 ### date
@@ -37,12 +39,13 @@ util.addHours() // '给指定日期增加指定小时',
 util.timeStarChange() // '将时间转为时间戳，按当天最初一刻',
 util.timeEndChange() //'将时间转为时间戳，按当天最后一刻',
 util.timeDifference() // '获取时间差,提供两个时间戳，返回一个对象,为负数表示当前time1比time2小'
+util.elementIsVisibleInViewport()  // "如果指定的元素在可视窗口中可见，则返回 true ，否则返回 false"
 ```
 
 ### device
 
 ```
-util.isPC()  // "是否是PC设备",
+util.ispc()  // "是否是PC设备",
 util.istrident()  // "是否是IE浏览器",
 util.ispresto()  // "是否是opera内核",
 util.iswebKit()  // "苹果、谷歌内核",
@@ -52,6 +55,7 @@ util.isweixin()  // "是否微信",
 util.isgecko()  // "判断是否是火狐内核",
 util.isios()  // "判断是否是ios终端",
 util.isqq()  // "判断是否是qq"
+util.scrollToTop() // "回到顶部"
 ```
 
 ### dom
@@ -159,7 +163,8 @@ util.camelCase() //  '英文字符串依序转驼峰，处理过程中遇见非�
 util.endsWith() //  '判断某个字符串是否以某特殊字符结尾,尾部空格会被忽略',
 util.startsWith() //  '判断某个字符串是否以某特殊字符开头,头部空格会被忽略',
 util.randomString() //  '生成随机字符串',
-util.hiddenNumber() //  '隐藏号码的中间一部分，常见的是隐藏中间四位'
+util.hiddenNumber() //  '隐藏号码的中间一部分，常见的是隐藏手机号中间四位'
+util.randomNumber() // '生成一个[min, max]之间的随机数'
 ```
 
 ### url
@@ -168,6 +173,7 @@ util.hiddenNumber() //  '隐藏号码的中间一部分，常见的是隐藏中�
 util.GetQueryString() //  '获取url中的某个参数值',
 util.replaceQueryString() //  '修改url中的某个参数的值，返回新地址',
 util.addQueryString() //  '在URL中追加一个参数'
+util.isAbsoluteURL() // '如果给定的字符串是绝对URL，则返回 true ；否则返回 false'
 ```
 
 

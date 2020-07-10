@@ -1,25 +1,25 @@
-import { comm } from "./util_common/util_common.js"
+import { comm } from "./util_common"
 
-import { cookie } from "./util_cookie/util_cookie.js"
+import { cookie } from "./util_cookie"
 
-import { date } from "./util_date/util_date.js"
+import { date } from "./util_date"
 
-import { device } from "./util_device/util_device.js"
+import { device } from "./util_device"
 
-import { dom } from "./util_dom/util_dom.js"
+import { dom } from "./util_dom"
 
-import { check } from "./util_regexp/util_regexp.js"
+import { check } from "./util_regexp"
 
-import { string } from "./util_string/util_string.js"
+import { string } from "./util_string"
 
-import { url } from "./util_url/util_url.js"
+import { url } from "./util_url"
 
 
 
 
 class Util {
     constructor() {
-        this._version = "Util function of version [v1.0.9]";
+        this._version = "Util function of version [v1.1.0]";
 		
 		this.comm = comm;
 		

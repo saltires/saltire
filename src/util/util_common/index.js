@@ -1,5 +1,6 @@
 const list = {
-	debounce: '防止函数被频繁触发'
+	debounce: '防止函数被频繁触发',
+	copyToClipboard: '将一个字符串复制到剪贴板'
 }
 
 /**
@@ -30,6 +31,23 @@ enumOfType.forEach(function (t) {
 });
 
 /**
+  * @date 2020-06-19
+  * @author saltire
+  * @description 对常用日期格式化函数的封装
+*/
+function comm(){
+	let result = '\n';
+	let index = 1;
+	
+	Object.keys(list).forEach(function(key){
+		result = `${result}***${index}. ${key}: ${list[key]} ***\n`;
+		index++;
+	})
+	
+	return result;
+}
+
+/**
  * @author jxye
  * @date 2020/3/18
  * @Description: 防止函数被频繁触发，设置一个间隔时间，如果间隔时间内用户又一次触发，认为触发无效，并且重新设置间隔时间，这就是常说的防抖
@@ -49,20 +67,27 @@ function debounce(func, delay) {
 }
 
 /**
-  * @date 2020-06-19
+  * @date 2020-07-09
   * @author saltire
-  * @description 对常用日期格式化函数的封装
+  * @description 将一个字符串复制到剪贴板
+  * @param (string, 要复制的字符串)
 */
-function comm(){
-	let result = '\n';
-	let index = 1;
-	
-	Object.keys(list).forEach(function(key){
-		result = `${result}***${index}. ${key}: ${list[key]} ***\n`;
-		index++;
-	})
-	
-	return result;
+function copyToClipboard(str) {
+  const el = document.createElement('textarea');
+  el.value = str;
+  el.setAttribute('readonly', '');
+  el.style.position = 'absolute';
+  el.style.left = '-9999px';
+  document.body.appendChild(el);
+  const selected =
+    document.getSelection().rangeCount > 0 ? document.getSelection().getRangeAt(0) : false;
+  el.select();
+  document.execCommand('copy');
+  document.body.removeChild(el);
+  if (selected) {
+    document.getSelection().removeAllRanges();
+    document.getSelection().addRange(selected);
+  }
 }
 
 Object.keys(list).forEach(function (t) {

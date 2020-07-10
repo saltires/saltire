@@ -3,7 +3,8 @@ const list = {
 	endsWith: '判断某个字符串是否以某特殊字符结尾,尾部空格会被忽略',
 	startsWith: '判断某个字符串是否以某特殊字符开头,头部空格会被忽略',
 	randomString: '生成随机字符串',
-	hiddenNumber: '隐藏号码的中间一部分，常见的是隐藏中间四位'
+	hiddenNumber: '隐藏号码的中间一部分，常见的是隐藏手机号中间四位',
+	randomNumber: '生成一个[min, max]之间的随机数'
 }
 
 /**
@@ -121,6 +122,11 @@ function hiddenNumber(str, frontLen, endLen) {
 		xing += '*';
 	}
 	return str.substring(0, frontLen) + xing + str.substring(str.length - endLen);
+}
+
+// 生成一个[min, max]之间的随机数
+function randomNumber(min, max){
+	return parseInt(Math.random()*(max-min+1)+min,10);
 }
 
 /**

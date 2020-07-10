@@ -1,6 +1,8 @@
 let list = {
 	setCookie: '给维权骑士项目（rightknights-html设置cookie，开发模式下是本地，正式环境下是.rightknights.com)',
-	getCookie: '获取cookie'
+	getCookie: '获取cookie',
+	clearCookie: '清除某个cookie',
+	parseCookie: '解析 HTTP Cookie 标头字符串并返回所有cookie的name-value对的对象'
 }
 
 /**
@@ -34,6 +36,28 @@ function getCookie(cname) {
 	
 	return "";
 }
+
+ /* 清除某个cookie */
+function clearCookie(name) {     
+	setCookie(name, "", -1); 
+}
+
+/**
+  * @date 2020-07-09
+  * @author saltire
+  * @description 解析 HTTP Cookie 标头字符串并返回所有 cookie 的 name-value 对的对象
+  * @return (object)
+*/
+function parseCookie(){
+	return document.cookie
+		.split(';')
+		.map(v => v.split('='))
+		.reduce((acc, v) => {
+		acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(v[1].trim());
+		return acc;
+		}, {});
+}
+  
 
 function cookie(){
 	let result = '\n';
