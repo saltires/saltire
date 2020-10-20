@@ -1,11 +1,11 @@
 {
   "name": "saltire_util",
-  "version": "1.1.0",
+  "version": "1.1.4",
   "description": "util for commom job",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"build": "webpack"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",

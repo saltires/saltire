@@ -10,7 +10,7 @@ const list = {
 	getDaysInMonth: '获取指定月份的天数',
 	addDays: '给指定日期增加指定天数',
 	addHours: '给指定日期增加指定小时',
-	timeStarChange: '将时间转为时间戳，按当天最初一刻',
+	timeStartChange: '将时间转为时间戳，按当天最初一刻',
 	timeEndChange: '将时间转为时间戳，按当天最后一刻',
 	timeDifference: '获取时间差,提供两个时间戳，返回一个对象,为负数表示当前time1比time2小'
 }
@@ -144,7 +144,7 @@ function addHours(d, hours){
 }
 
 /* 将时间转为时间戳，按当天最初一刻 */
-function timeStarChange(t) {
+function timeStartChange(t) {
 	var d = new Date(t);
 	var datetime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + '  00:00:00';
 	var aa = new Date(datetime);

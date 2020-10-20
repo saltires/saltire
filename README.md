@@ -10,36 +10,41 @@ import util from 'saltire_util'
 
 ### comm
 ```
-util.debounce() // 防止函数被频繁触发
-util.copyToClipboard() // 将一个字符串复制到剪贴板
+util.debounce() // 防止函数被频繁触发,第一个参数是指定的函数，第二个是延迟时间
+// 如: debounce(function(){console.log(this);}, 300)
+util.copyToClipboard('字符串内容') // 将一个字符串复制到剪贴板
+util.downoladFile(url, '文件名称') // 下载网络上的文件(任意文件格式，前提需要是一个存在于公网的资源地址)
+// 如: downoladFile('https://rk-secure-base-test.oss-cn-qingdao.aliyuncs.com/font/image/image1.jpg', '资料')
 ```
 ### cookie
 
 ```
-util.setCookie() // '给维权骑士项目（rightknights-html设置cookie，开发模式下是本地，正式环境下是.rightknights.com)'
-util.getCookie() // '获取cookie'
-util.clearCookie() // '清除某个cookie'
+util.setCookie(cname, cvalue, exdays) // '给维权骑士项目（rightknights-html设置cookie，开发模式下是本地，正式环境下是.rightknights.com)'
+// @param (cname,string,键名) （cvalue，string，键值）（exdays, number, 失效时间，以天为单位）
+util.getCookie(cname) // '获取cookie' cname为键名
+util.clearCookie(cname) // '清除某个cookie'
 util.parseCookie() // '解析 HTTP Cookie 标头字符串并返回所有cookie的name-value对的对象'
 ```
 
 ### date
 
 ```
-util.renderDate() //  '日期格式化工具函数',
-util.between() // '判断指定日期是否在指定的开始日期和结束日期之间',
-util.isEqual() // '判断两个日期是否相等',
-util.isLeapYear() // '判断是否是闰年',
-util.getFirstDayOfMonth() // '返回指定年月的第一天是星期几，返回值是1-7的数字',
-util.getLastDayOfMonth() // '返回指定月份的最后一天是星期几，返回值是1-7的数字',
-util.getFirstDateOfMonth() // '返回指定年月第一天的日期',
-util.getLastDateOfMonth() // '返回指定年月最后一天的日期',
-util.getDaysInMonth() // '获取指定月份的天数',
-util.addDays() // '给指定日期增加指定天数',
-util.addHours() // '给指定日期增加指定小时',
-util.timeStarChange() // '将时间转为时间戳，按当天最初一刻',
-util.timeEndChange() //'将时间转为时间戳，按当天最后一刻',
-util.timeDifference() // '获取时间差,提供两个时间戳，返回一个对象,为负数表示当前time1比time2小'
-util.elementIsVisibleInViewport()  // "如果指定的元素在可视窗口中可见，则返回 true ，否则返回 false"
+util.renderDate(d, f) //  '日期格式化工具函数',第一个参数为Date对象，第二个参数是格式，默认为年-月-日
+
+util.between(d, s, e) // '判断指定日期是否在指定的开始日期和结束日期之间',@param (date, 指定日期) (start, 开始时间) （end， 结束时间）
+
+util.isEqual(d1, d2) // '判断两个日期是否相等',
+util.isLeapYear(d) // '判断是否是闰年',
+util.getFirstDayOfMonth(d) // '返回指定年月的第一天是星期几，返回值是1-7的数字',
+util.getLastDayOfMonth(d) // '返回指定月份的最后一天是星期几，返回值是1-7的数字',
+util.getFirstDateOfMonth(d) // '返回指定年月第一天的日期',
+util.getLastDateOfMonth(d) // '返回指定年月最后一天的日期',
+util.getDaysInMonth(d) // '获取指定月份的天数',
+util.addDays(d, days) // '给指定日期增加指定天数',
+util.addHours(d, hours) // '给指定日期增加指定小时',
+util.timeStartChange(d) // '将时间转为时间戳，按当天最初一刻',
+util.timeEndChange(d) //'将时间转为时间戳，按当天最后一刻',
+util.timeDifference(time1, time2) // '获取时间差,提供两个时间戳，返回一个对象,为负数表示当前time1比time2小',这里两个参数都是时间戳
 ```
 
 ### device
@@ -56,14 +61,15 @@ util.isgecko()  // "判断是否是火狐内核",
 util.isios()  // "判断是否是ios终端",
 util.isqq()  // "判断是否是qq"
 util.scrollToTop() // "回到顶部"
+util.elementIsVisibleInViewport()  // "如果指定的元素在可视窗口中可见，则返回 true ，否则返回 false"，* @param （指定元素，el）（省略第二个参数来判断元素是否完全可见，或者指定 true 来判断它是否部分可见，bolean）
 ```
 
 ### dom
 
 ```
-util.hasClass() //  '判断元素是否含有某个class',
-util.addClass() //  '原生js操作元素class的方法，给元素添加class，支持不定长参数',
-util.removeClass() //  '原生js操作元素class的方法，删除元素的class，支持不定长参数'
+util.hasClass(element, className) //  '判断元素是否含有某个class',
+util.addClass(element, ...) //  '原生js操作元素class的方法，给元素添加class，支持不定长参数',element为必填，class名称支持不定长参数
+util.removeClass(element, ...) //  '原生js操作元素class的方法，删除元素的class，支持不定长参数',element为必填，class名称支持不定长参数
 ```
 
 ### check
@@ -159,21 +165,21 @@ const reg = {
 ### string
 
 ```
-util.camelCase() //  '英文字符串依序转驼峰，处理过程中遇见非英文字母字符，全部当做空格处理，其余依序拼装',
-util.endsWith() //  '判断某个字符串是否以某特殊字符结尾,尾部空格会被忽略',
-util.startsWith() //  '判断某个字符串是否以某特殊字符开头,头部空格会被忽略',
+util.camelCase(string) //  '英文字符串依序转驼峰，处理过程中遇见非英文字母字符，全部当做空格处理，其余依序拼装',
+util.endsWith(string, match) //  '判断某个字符串是否以某特殊字符结尾,尾部空格会被忽略',  * @example: endsWith("foobar", "bar") // true   endsWith("foobar", "foo") // false
+util.startsWith(string, match) //  '判断某个字符串是否以某特殊字符开头,头部空格会被忽略', * @example: startsWith("foobar", "fo") // true startsWith("foobar", "v") // false
 util.randomString() //  '生成随机字符串',
-util.hiddenNumber() //  '隐藏号码的中间一部分，常见的是隐藏手机号中间四位'
-util.randomNumber() // '生成一个[min, max]之间的随机数'
+util.hiddenNumber(str, frontLen, endLen) //  '隐藏号码的中间一部分，常见的是隐藏手机号中间四位'，* @example hiddenNumber('13901342187', 3, 4) => 139****2187
+util.randomNumber(min, max) // '生成一个[min, max]之间的随机数'
 ```
 
 ### url
 
 ```
-util.GetQueryString() //  '获取url中的某个参数值',
-util.replaceQueryString() //  '修改url中的某个参数的值，返回新地址',
-util.addQueryString() //  '在URL中追加一个参数'
-util.isAbsoluteURL() // '如果给定的字符串是绝对URL，则返回 true ；否则返回 false'
+util.GetQueryString(name) //  '获取url中的某个参数值',
+util.replaceQueryString(paramName,replaceWith) //  '修改url中的某个参数的值，返回新地址',
+util.addQueryString(paramName,replaceWith) //  '在URL中追加一个参数'
+util.isAbsoluteURL(url) // '如果给定的字符串是绝对URL，则返回 true ；否则返回 false'
 ```
 
 
