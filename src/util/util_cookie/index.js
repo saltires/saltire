@@ -58,7 +58,6 @@ function parseCookie(){
 		}, {});
 }
   
-
 function cookie(){
 	let result = '\n';
 	let index = 1;
@@ -71,9 +70,10 @@ function cookie(){
 	return result;
 }
 
-Object.keys(list).forEach(function (t) {
-    cookie[t] = eval(t);
-});
+cookie.parseCookie = parseCookie
+cookie.clearCookie = clearCookie
+cookie.getCookie = getCookie
+cookie.setCookie = setCookie
 
 export {
 	cookie

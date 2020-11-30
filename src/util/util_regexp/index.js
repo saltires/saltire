@@ -62,9 +62,6 @@ const reg = {
 	// 小数
 	decimal: /^\d+\.\d+$/,
 	
-	// 数字
-	number: /^\d{1,}$/,
-	
 	// qq号码格式
 	qq_number: /^[1-9][0-9]{4,10}$/,
 	
@@ -104,6 +101,8 @@ Object.keys(reg).forEach(function (t) {
         return check(params, reg[t]);
     }
 });
+
+check.isnumber = (num) => Object.prototype.toString.call(num) === "[object Object]"
 
 export{
 	check

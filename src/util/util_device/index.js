@@ -22,74 +22,103 @@ const browser = {
 	weixin: 'MicroMessenger', //是否微信
 }
 
+const userAgentDefault = "wechatdevtools desktopapp appservice port/48270 token/99f8ac1ba71ad7c1a00605bb2a03f8c8"
+
 /**
   * @date 2020-06-19
   * @author saltire
   * @description 封装常见的判断设备的方法
 */
-let device = function(s, r) {
+let device = function (s, r) {
 	let regNew = new RegExp(r);
-	
+
 	return regNew.test(s);
 }
 
 Object.keys(browser).forEach(function (t) {
-	var u = navigator.userAgent
-	
+	try {
+		var u = window.navigator && window.navigator.userAgent
+	} catch {
+		var u = userAgentDefault
+	}
+
 	device["is" + t] = function () {
 		return u.indexOf(browser[t]) > -1;
 	}
 });
 
 // 判断是否是火狐内核
-function isgecko(){
-	var u = navigator.userAgent;
+function isgecko() {
+	try {
+		var u = window.navigator && window.navigator.userAgent
+	} catch {
+		var u = userAgentDefault
+	}
+
 	return u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1;
 }
 
 // 判断是否是qq
-function isqq(){
-	var u = navigator.userAgent;
+function isqq() {
+	try {
+		var u = window.navigator && window.navigator.userAgent
+	} catch {
+		var u = userAgentDefault
+	}
+
 	return u.match(/\sQQ/i) == " qq";
 }
 
 // 判断是否是ios终端
-function isios(){
-	var u = navigator.userAgent;
+function isios() {
+	try {
+		var u = window.navigator && window.navigator.userAgent
+	} catch {
+		var u = userAgentDefault
+	}
+
 	return !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
 }
 
 // 判断是pc端还是移动端
-function ispc(){
-  let userAgentInfo = navigator.userAgent;
-  let Agents = [
-	"Android",
-	"iPhone",
-	"SymbianOS",
-	"Windows Phone",
-	"iPad",
-	"iPod"
-  ];
-  let flag = true;
-  for (let v = 0; v < Agents.length; v++) {
-	if (userAgentInfo.indexOf(Agents[v]) > 0) {
-	  flag = false;
-	  break;
+function ispc() {
+	try {
+		var userAgentInfo = window.navigator && window.navigator.userAgent
+	} catch {
+		var userAgentInfo = userAgentDefault
 	}
-  }
-  return flag;
+	let Agents = [
+		"Android",
+		"iPhone",
+		"SymbianOS",
+		"Windows Phone",
+		"iPad",
+		"iPod"
+	];
+	let flag = true;
+	for (let v = 0; v < Agents.length; v++) {
+		if (userAgentInfo.indexOf(Agents[v]) > 0) {
+			flag = false;
+			break;
+		}
+	}
+	return flag;
 }
 
 /* 
 平滑滚动到页面顶部。
 使用 document.documentElement.scrollTop 或 document.body.scrollTop 获取到顶部距离。从顶部滚动一小部分距离。使用window.requestAnimationFrame() 来实现滚动动画。
  */
-function scrollToTop(){
-	const c = document.documentElement.scrollTop || document.body.scrollTop;
-	
-	if (c > 0) {
-	  window.requestAnimationFrame(scrollToTop);
-	  window.scrollTo(0, c - c / 8);
+function scrollToTop() {
+	try {
+		const c = document.documentElement.scrollTop || document.body.scrollTop;
+
+		if (c > 0) {
+			window.requestAnimationFrame(scrollToTop);
+			window.scrollTo(0, c - c / 8);
+		}
+	} catch {
+		return
 	}
 }
 
@@ -101,20 +130,31 @@ function scrollToTop(){
   * @return boolean
 */
 function elementIsVisibleInViewport(el, partiallyVisible = false) {
-  const { top, left, bottom, right } = el.getBoundingClientRect();
-  const { innerHeight, innerWidth } = window;
-  return partiallyVisible
-    ? ((top > 0 && top < innerHeight) || (bottom > 0 && bottom < innerHeight)) &&
-        ((left > 0 && left < innerWidth) || (right > 0 && right < innerWidth))
-    : top >= 0 && left >= 0 && bottom <= innerHeight && right <= innerWidth;
+	try {
+		const { top, left, bottom, right } = el.getBoundingClientRect();
+		const { innerHeight, innerWidth } = window;
+		return partiallyVisible
+			? ((top > 0 && top < innerHeight) || (bottom > 0 && bottom < innerHeight)) &&
+			((left > 0 && left < innerWidth) || (right > 0 && right < innerWidth))
+			: top >= 0 && left >= 0 && bottom <= innerHeight && right <= innerWidth;
+	} catch {
+		return
+	}
 }
 
-Object.keys(list).forEach(function (t) {
-	if (!device[t]) {
-		device[t] = eval(t);
-	}
-});
+device.ispc = ispc
+device.istrident = istrident
+device.ispresto = ispresto
+device.iswebKit = iswebKit
+device.isiPhone = isiPhone
+device.isiPad = isiPad
+device.isweixin = isweixin
+device.isgecko = isgecko
+device.isios = isios
+device.isqq = isqq
+device.scrollToTop = scrollToTop
+device.elementIsVisibleInViewport = elementIsVisibleInViewport
 
-export{
+export {
 	device
 }

@@ -199,9 +199,20 @@ function date(){
 	return result;
 }
 
-Object.keys(list).forEach(function (t) {
-    date[t] = eval(t);
-});
+date.renderDate = renderDate
+date.between = between
+date.isEqual = isEqual
+date.isLeapYear = isLeapYear
+date.getFirstDayOfMonth = getFirstDayOfMonth
+date.getLastDayOfMonth = getLastDayOfMonth
+date.getFirstDateOfMonth = getFirstDateOfMonth
+date.getLastDateOfMonth = getLastDateOfMonth
+date.getDaysInMonth = getDaysInMonth
+date.addDays = addDays
+date.addHours = addHours
+date.timeStartChange = timeStartChange
+date.timeEndChange = timeEndChange
+date.timeDifference = timeDifference
 
 
 export{

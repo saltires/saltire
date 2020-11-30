@@ -1,7 +1,8 @@
 const list = {
     debounce: '防止函数被频繁触发',
     copyToClipboard: '将一个字符串复制到剪贴板',
-    downoladFile: '下载网络上的文件'
+    downoladFile: '下载网络上的文件',
+    once: '控制函数只被执行一次'
 }
 
 /**
@@ -113,9 +114,29 @@ function downoladFile(url, name) {
     xhr.send();
 }
 
-Object.keys(list).forEach(function(t) {
-    comm[t] = eval(t);
-});
+/**
+ * @date 2020-11-17
+ * @author saltire
+ * @description 控制函数只执行一次
+ * @param 希望被控制的函数
+ */
+function once (fn) {
+    let flag = false
+
+    return function (...args) {
+        if (!flag) {
+            flag = true
+            return fn(...args)
+        }
+
+        return
+    }
+}
+
+comm.debounce = debounce
+comm.copyToClipboard = copyToClipboard
+comm.downoladFile = downoladFile
+comm.once = once
 
 export {
     comm

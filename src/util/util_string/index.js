@@ -146,9 +146,12 @@ function string(){
 	return result;
 }
 
-Object.keys(list).forEach(function (t) {
-    string[t] = eval(t);
-});
+string.camelCase = camelCase
+string.endsWith = endsWith
+string.startsWith = startsWith
+string.randomString = randomString
+string.hiddenNumber = hiddenNumber
+string.randomNumber = randomNumber
 
 export {
     string

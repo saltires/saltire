@@ -81,10 +81,9 @@ function dom(){
 	return result;
 }
 
-Object.keys(list).forEach(function (t) {
-    dom[t] = eval(t);
-});
-
+dom.hasClass = hasClass
+dom.addClass = addClass
+dom.removeClass = removeClass
 
 export {
     dom
