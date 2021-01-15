@@ -15,6 +15,8 @@ util.debounce() // 防止函数被频繁触发,第一个参数是指定的函数
 util.copyToClipboard('字符串内容') // 将一个字符串复制到剪贴板
 util.downoladFile(url, '文件名称') // 下载网络上的文件(任意文件格式，前提需要是一个存在于公网的资源地址)
 // 如: downoladFile('https://rk-secure-base-test.oss-cn-qingdao.aliyuncs.com/font/image/image1.jpg', '资料')
+util.once(): '控制函数只被执行一次',
+util.flatten(): '多维数组扁平化'
 ```
 ### cookie
 
