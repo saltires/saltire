@@ -2,7 +2,8 @@ const list = {
     debounce: '防止函数被频繁触发',
     copyToClipboard: '将一个字符串复制到剪贴板',
     downoladFile: '下载网络上的文件',
-    once: '控制函数只被执行一次'
+    once: '控制函数只被执行一次',
+    flatten: '多维数组扁平化'
 }
 
 /**
@@ -47,6 +48,21 @@ function comm() {
     })
 
     return result;
+}
+
+/**
+ * @date 2020-12-04
+ * @param { Array }
+ * @author saltire
+ * @description 多维数组扁平化
+ * @return { Array }
+ */
+function flatten(arr) {
+    while (arr.some(item => Array.isArray(item))) {
+        arr = [].concat(...arr)
+    }
+
+    return arr
 }
 
 /**
@@ -137,6 +153,7 @@ comm.debounce = debounce
 comm.copyToClipboard = copyToClipboard
 comm.downoladFile = downoladFile
 comm.once = once
+comm.flatten = flatten
 
 export {
     comm

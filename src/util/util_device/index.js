@@ -143,12 +143,12 @@ function elementIsVisibleInViewport(el, partiallyVisible = false) {
 }
 
 device.ispc = ispc
-device.istrident = istrident
-device.ispresto = ispresto
-device.iswebKit = iswebKit
-device.isiPhone = isiPhone
-device.isiPad = isiPad
-device.isweixin = isweixin
+// device.istrident = istrident
+// device.ispresto = ispresto
+// device.iswebKit = iswebKit
+// device.isiPhone = isiPhone
+// device.isiPad = isiPad
+// device.isweixin = isweixin
 device.isgecko = isgecko
 device.isios = isios
 device.isqq = isqq
